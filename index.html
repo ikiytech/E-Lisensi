@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk dan Harga Windows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .product-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #555;
+        }
+        .product-card .price {
+            color: #e53935;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .edition-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .edition-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+        .edition-container button.active {
+            background: #ff7043;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Produk dan Harga Windows</h1>
+
+    <div class="product-container">
+        <!-- Windows Products -->
+        <div class="product-card" id="windows10-card">
+            <img src="img/Windows 10.png" alt="Windows 10">
+            <h3>Windows 10</h3>
+            <p id="windows10-edition">Home</p>
+            <p class="price" id="windows10-price">Rp45.000</p>
+        </div>
+        <div class="product-card" id="windows11-card">
+            <img src="img/Winows 11.png" alt="Windows 11">
+            <h3>Windows 11</h3>
+            <p id="windows11-edition">Home</p>
+            <p class="price" id="windows11-price">Rp35.000</p>
+        </div>
+    </div>
+
+    <div class="edition-container">
+        <h2>Pilih Edisi Windows:</h2>
+        <button onclick="changeWindowsEdition('Home')">Home</button>
+        <button class="active" onclick="changeWindowsEdition('Pro')">Pro</button>
+        <button onclick="changeWindowsEdition('Education')">Education</button>
+        <button onclick="changeWindowsEdition('Enterprise')">Enterprise</button>
+        <button onclick="changeWindowsEdition('Pro for Workstations')">Pro for Workstations</button>
+        <button onclick="changeWindowsEdition('Pro Education')">Pro Education</button>
+    </div>
+
+    <div class="edition-container">
+        <h2>Pilih Harga Windows:</h2>
+        <button onclick="changeWindowsPrice('windows10')">Windows 10</button>
+        <button onclick="changeWindowsPrice('windows11')">Windows 11</button>
+    </div>
+
+    <!-- Tombol untuk berpindah ke Produk Office -->
+    <div class="edition-container">
+        <button onclick="window.location.href='Office.html'">Pilih Produk Office</button>
+    </div>
+
+    <script>
+        // Harga berdasarkan edisi
+        const windowsPrices = {
+            windows10: {
+                Home: "Rp45.000",
+                Pro: "Rp55.000",
+                Education: "Rp40.000",
+                Enterprise: "Rp60.000",
+                "Pro for Workstations": "Rp55.000",
+                "Pro Education": "Rp50.000"
+            },
+            windows11: {
+                Home: "Rp35.000",
+                Pro: "Rp50.000",
+                Education: "Rp30.000",
+                Enterprise: "Rp55.000",
+                "Pro for Workstations": "Rp65.000",
+                "Pro Education": "Rp45.000"
+            }
+        };
+
+        // Fungsi untuk mengganti edisi Windows
+        function changeWindowsEdition(edition) {
+            // Perbarui edisi Windows 10
+            document.getElementById("windows10-edition").textContent = edition;
+            document.getElementById("windows10-price").textContent = windowsPrices.windows10[edition];
+
+            // Perbarui edisi Windows 11
+            document.getElementById("windows11-edition").textContent = edition;
+            document.getElementById("windows11-price").textContent = windowsPrices.windows11[edition];
+
+            // Perbarui tombol aktif
+            document.querySelectorAll(".edition-container button").forEach(button => {
+                button.classList.remove("active");
+            });
+            event.target.classList.add("active");
+        }
+
+        // Fungsi untuk memilih harga Windows 10 atau Windows 11
+        function changeWindowsPrice(version) {
+            if (version === 'windows10') {
+                document.getElementById("windows10-card").style.display = 'block';
+                document.getElementById("windows11-card").style.display = 'none';
+            } else {
+                document.getElementById("windows11-card").style.display = 'block';
+                document.getElementById("windows10-card").style.display = 'none';
+            }
+
+            // Perbarui tombol aktif
+            document.querySelectorAll(".edition-container button").forEach(button => {
+                button.classList.remove("active");
+            });
+            event.target.classList.add("active");
+        }
+    </script>
+</body>
+</html>

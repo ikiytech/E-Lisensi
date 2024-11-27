@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk dan Harga Office</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .product-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #555;
+        }
+        .product-card .price {
+            color: #e53935;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .edition-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .edition-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+        .edition-container button.active {
+            background: #ff7043;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Produk dan Harga Office</h1>
+
+    <div class="product-container">
+        <!-- Office Products -->
+        <div class="product-card" id="office-card">
+            <img src="img/Office 2010.png" alt="Office" id="office-img">
+            <h3 id="office-title">Office 2010</h3>
+            <p id="office-edition">Professional Plus</p>
+            <p class="price" id="office-price">Rp15.000</p>
+        </div>
+    </div>
+
+    <div class="edition-container">
+        <h2>Pilih Versi Office:</h2>
+        <button class="active" onclick="changeOffice('2010')">Office 2010</button>
+        <button onclick="changeOffice('2013')">Office 2013</button>
+        <button onclick="changeOffice('2016')">Office 2016</button>
+        <button onclick="changeOffice('2019')">Office 2019</button>
+        <button onclick="changeOffice('2021')">Office 2021</button>
+    </div>
+
+    <!-- Tombol untuk berpindah ke Produk Office -->
+    <div class="edition-container">
+        <button onclick="window.location.href='index.html'">Pilih Produk Windows</button>
+    </div>
+
+    <script>
+        // Harga dan Gambar berdasarkan versi Office
+        const officePrices = {
+            "2010": { title: "Office 2010", price: "Rp15.000", img: "img/Office 2010.png" },
+            "2013": { title: "Office 2013", price: "Rp25.000", img: "img/Office 2013.png" },
+            "2016": { title: "Office 2016", price: "Rp35.000", img: "img/Office 2016.png" },
+            "2019": { title: "Office 2019", price: "Rp50.000", img: "img/Office 2019.png" },
+            "2021": { title: "Office 2021", price: "Rp65.000", img: "img/Office 2021.png" },
+        };
+
+        // Fungsi untuk mengganti versi Office
+        function changeOffice(version) {
+            const office = officePrices[version];
+
+            // Perbarui detail Office
+            document.getElementById("office-title").textContent = office.title;
+            document.getElementById("office-price").textContent = office.price;
+            document.getElementById("office-img").src = office.img;
+
+            // Perbarui tombol aktif
+            document.querySelectorAll(".edition-container button").forEach(button => {
+                button.classList.remove("active");
+            });
+            event.target.classList.add("active");
+        }
+    </script>
+</body>
+</html>
